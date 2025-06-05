@@ -18,7 +18,7 @@ function Navbar() {
         <div className="flex items-center justify-between">
           <div className="w-1/3 flex items-center">
             <Image
-              src="/dish.png"
+              src="/FindFood/dish.png"
               alt="findFood Logo"
               width={40}
               height={40}
