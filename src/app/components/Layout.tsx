@@ -1,5 +1,7 @@
+// components/Layout.tsx
 import React from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 interface ILayoutProps {
   children?: React.ReactNode;
@@ -7,10 +9,12 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      {children}
+      <main className="flex-grow">{children}</main>
+      <Footer />
     </div>
   );
 }
+
 export default Layout;
