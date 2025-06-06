@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "image": "/steak.jpg",
+      "title": "Steak",
+      "price": 20,
+      "description": "xcsad"
+    },
+    {
+      "id": "2",
+      "image": "/person.png",
+      "title": "salad",
+      "price": 10,
+      "description": "salad"
+    },
+    {
+      "id": "3",
+      "image": "/ppizza.webp",
+      "title": "Pizza",
+      "price": 15,
+      "description": "Piza"
+    },
+    {
+      "id": "4",
+      "image": "/hamburger.jpg",
+      "title": "Hamburger",
+      "price": 12,
+      "description": "Hamburger"
+    }
+  ]
+}
