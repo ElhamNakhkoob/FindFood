@@ -10,6 +10,7 @@ function Navbar() {
   const navLinks = [
     { href: "/", title: "Home" },
     { href: "/store", title: "Store" },
+    { href: "/cart", title: "Cart" },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -30,19 +31,23 @@ function Navbar() {
               findFood
             </span>
           </div>
-          <div className="hidden md:flex space-x-6">
+
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`font-semibold transition-colors ${
                   pathname === item.href ? "text-[#DE8436]" : "text-white"
-                }`}
+                } hover:text-[#DE8436]`}
               >
                 {item.title}
               </Link>
             ))}
           </div>
+
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -73,6 +78,8 @@ function Navbar() {
             </svg>
           </button>
         </div>
+
+        {/* Mobile Nav Links */}
         {isOpen && (
           <div className="md:hidden mt-4 space-y-2">
             {navLinks.map((item) => (
