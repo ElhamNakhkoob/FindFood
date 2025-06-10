@@ -4,7 +4,6 @@ import { IProductItemProps } from "../../components/ProductItem";
 
 interface IProductProps {
   params: Promise<{ id: string }>;
-  searchParams?: Promise<{}>;
 }
 
 async function Product({ params }: IProductProps) {
