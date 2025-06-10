@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../../components/Container";
 import { IProductItemProps } from "../../components/ProductItem";
+import AddToCart from "../../components/AddToCart";
 
 interface IProductProps {
   params: Promise<{ id: string }>;
@@ -28,15 +29,7 @@ async function Product({ params }: IProductProps) {
             <p className="text-lg font-semibold mb-4">
               Price: <span className="text-[#DE8436]">${data.price}</span>
             </p>
-            <div className="flex items-center space-x-4">
-              <button className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition">
-                +
-              </button>
-              <span className="text-lg font-medium">3</span>
-              <button className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition">
-                -
-              </button>
-            </div>
+            <AddToCart id={id} />
           </div>
         </div>
       </div>
