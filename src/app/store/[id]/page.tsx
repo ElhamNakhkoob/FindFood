@@ -14,24 +14,30 @@ async function Product({ params }: IProductProps) {
 
   return (
     <Container>
-      <div className="grid grid-cols-12 mt-8 shadow-md">
-        <div className="col-span-3">
-          <img src={data.image} alt="ttt" />
-        </div>
-        <div className="col-span-9 p-4">
-          <h2 className="font-bold text-xl">{data.title}</h2>
-          <p>{data.description}</p>
-          <p>
-            price: <span>{data.price}</span>
-          </p>
-          <div className="mt-4">
-            <button className="px-4 py-2 bg-sky-300 text-white rounded">
-              +
-            </button>
-            <span className="mx-4">3</span>
-            <button className="px-4 py-2 bg-sky-300 text-white rounded">
-              -
-            </button>
+      <div className="max-w-4xl mx-auto mt-8 shadow-lg rounded-lg overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="md:col-span-1">
+            <img
+              src={data.image}
+              alt={data.title}
+              className="w-full h-64 object-cover"
+            />
+          </div>
+          <div className="md:col-span-2 p-6">
+            <h2 className="font-bold text-2xl mb-2">{data.title}</h2>
+            <p className="text-gray-700 mb-4">{data.description}</p>
+            <p className="text-lg font-semibold mb-4">
+              Price: <span className="text-[#DE8436]">${data.price}</span>
+            </p>
+            <div className="flex items-center space-x-4">
+              <button className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition">
+                +
+              </button>
+              <span className="text-lg font-medium">3</span>
+              <button className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition">
+                -
+              </button>
+            </div>
           </div>
         </div>
       </div>
