@@ -1,17 +1,17 @@
+"use client";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem";
+import { useShoppingCartContext } from "@/context/ShoppingCartContext";
 
 function Cart() {
+  const { cartItems } = useShoppingCartContext();
   return (
     <Container>
       <h1>Cart</h1>
       <div className="">
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {cartItems.map((item) => (
+          <CartItem key={item.id} {...item} />
+        ))}
       </div>
       <div className="border shadow-md">
         <h3>

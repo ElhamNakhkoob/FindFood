@@ -7,21 +7,40 @@ interface AddToCartProps {
 }
 
 function AddToCart({ id }: AddToCartProps) {
-  const { cartItems, handleIncreaseProductQty } = useShoppingCartContext();
+  const {
+    cartItems,
+    handleIncreaseProductQty,
+    getProductQty,
+    handleDecreaseProductQty,
+    handleRemoveProduct,
+  } = useShoppingCartContext();
 
   console.log("cartItems", cartItems);
 
   return (
-    <div className="flex items-center space-x-4">
+    <div>
+      <div className="flex items-center space-x-4">
+        <button
+          className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition"
+          onClick={() => handleIncreaseProductQty(parseInt(id))}
+        >
+          +
+        </button>
+        <span className="text-lg font-medium">
+          {getProductQty(parseInt(id))}
+        </span>
+        <button
+          onClick={() => handleDecreaseProductQty(parseInt(id))}
+          className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition"
+        >
+          -
+        </button>
+      </div>
       <button
-        className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition"
-        onClick={() => handleIncreaseProductQty(parseInt(id))}
+        onClick={() => handleRemoveProduct(parseInt(id))}
+        className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] mt-2 transition"
       >
-        +
-      </button>
-      <span className="text-lg font-medium">3</span>
-      <button className="px-4 py-2 bg-[#D9AC84] text-white rounded hover:bg-[#DE8436] transition">
-        -
+        remove from cart
       </button>
     </div>
   );

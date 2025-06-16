@@ -4,9 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
+import { useShoppingCartContext } from "@/context/ShoppingCartContext";
 
 function Navbar() {
   const pathname = usePathname();
+  const { cartTotalQty } = useShoppingCartContext();
   const navLinks = [
     { href: "/", title: "Home" },
     { href: "/store", title: "Store" },
@@ -43,6 +45,11 @@ function Navbar() {
                 } hover:text-[#DE8436]`}
               >
                 {item.title}
+                {item.href === "/cart" && cartTotalQty > 0 && (
+                  <span className="ml-2 bg-[#DE8436] text-white rounded-full px-2 py-0.5 text-xs">
+                    {cartTotalQty}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
@@ -92,6 +99,11 @@ function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 {item.title}
+                {item.href === "/cart" && cartTotalQty > 0 && (
+                  <span className="ml-2 bg-[#DE8436] text-white rounded-full px-2 py-0.5 text-xs">
+                    {cartTotalQty}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
