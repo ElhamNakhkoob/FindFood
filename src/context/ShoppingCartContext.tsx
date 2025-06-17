@@ -1,5 +1,5 @@
 "use client";
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import React, { useState } from "react";
 import { useContext } from "react";
 
@@ -86,6 +86,17 @@ export function ShoppingCartContextProvider({
       return currentItem.filter((item) => item.id != id);
     });
   };
+
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <ShoppingCartContext.Provider
