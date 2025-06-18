@@ -27,6 +27,34 @@
       "title": "Hamburger",
       "price": 12,
       "description": "Hamburger"
+    },
+    {
+      "id": "5",
+      "image": "/steak.jpg",
+      "title": "Steak",
+      "price": 20,
+      "description": "xcsad"
+    },
+    {
+      "id": "6",
+      "image": "/person.png",
+      "title": "salad",
+      "price": 10,
+      "description": "salad"
+    },
+    {
+      "id": "7",
+      "image": "/ppizza.webp",
+      "title": "Pizza",
+      "price": 15,
+      "description": "Piza"
+    },
+    {
+      "id": "8",
+      "image": "/hamburger.jpg",
+      "title": "Hamburger",
+      "price": 12,
+      "description": "Hamburger"
     }
   ],
   "discount": [
