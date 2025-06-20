@@ -5,6 +5,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
 import { useShoppingCartContext } from "@/context/ShoppingCartContext";
+import Cookies from "js-cookie";
+import { redirect } from "next/navigation";
 
 function Navbar() {
   const pathname = usePathname();
@@ -13,6 +15,8 @@ function Navbar() {
     { href: "/", title: "Home" },
     { href: "/store", title: "Store" },
     { href: "/cart", title: "Cart" },
+    { href: "/dashboard", title: "dashboard" },
+    { href: "/login", title: "login" },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +56,15 @@ function Navbar() {
                 )}
               </Link>
             ))}
+            <button
+              onClick={() => {
+                Cookies.remove("token");
+                redirect("/");
+              }}
+              className="mr-4 rounded text-red "
+            >
+              Log Out
+            </button>
           </div>
 
           {/* Mobile Menu Button */}

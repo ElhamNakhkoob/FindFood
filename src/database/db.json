@@ -55,11 +55,71 @@
       "title": "Hamburger",
       "price": 12,
       "description": "Hamburger"
+    },
+    {
+      "id": "7076",
+      "image": "https://images.getrecipekit.com/20230216101252-pasta-e-piselli.jpg?aspect_ratio=16:9&quality=90&",
+      "title": "pastaa",
+      "description": "this is pastaaa",
+      "price": "200"
     }
   ],
   "discount": [
-    { "id": 1, "code": "OFF10", "percentage": 10 },
-    { "id": 2, "code": "OFF20", "percentage": 20 },
-    { "id": 3, "code": "OFF30", "percentage": 30 }
+    {
+      "id": 1,
+      "code": "OFF10",
+      "percentage": 10
+    },
+    {
+      "id": 2,
+      "code": "OFF20",
+      "percentage": 20
+    },
+    {
+      "id": 3,
+      "code": "OFF30",
+      "percentage": 30
+    }
+  ],
+  "orders": [
+    {
+      "id": "",
+      "cartItems": [],
+      "address": "",
+      "userName": "",
+      "status": "pending"
+    },
+    {
+      "id": "a50e",
+      "cartItems": [
+        {
+          "id": 3,
+          "qty": 2
+        },
+        {
+          "id": 1,
+          "qty": 3
+        }
+      ],
+      "address": "",
+      "userName": "",
+      "status": "pending | completed"
+    },
+    {
+      "id": "b940",
+      "cartItems": [
+        {
+          "id": 3,
+          "qty": 2
+        },
+        {
+          "id": 1,
+          "qty": 3
+        }
+      ],
+      "address": "kirchstraße",
+      "userName": "elham",
+      "status": "pending | completed"
+    }
   ]
 }
