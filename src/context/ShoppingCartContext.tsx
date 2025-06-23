@@ -1,7 +1,5 @@
 "use client";
-import { createContext, useEffect } from "react";
-import React, { useState } from "react";
-import { useContext } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 
 type ShoppingCartContextProps = {
   children: React.ReactNode;
@@ -19,13 +17,13 @@ type ShoppingCartContextType = {
   cartTotalQty: number;
   handleDecreaseProductQty: (id: number) => void;
   handleRemoveProduct: (id: number) => void;
+  clearCart: () => void;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContextType);
 
 export const useShoppingCartContext = () => {
-  const context = useContext(ShoppingCartContext);
-  return context;
+  return useContext(ShoppingCartContext);
 };
 
 export function ShoppingCartContextProvider({
@@ -33,58 +31,50 @@ export function ShoppingCartContextProvider({
 }: ShoppingCartContextProps) {
   const [cartItems, setCartItems] = useState<CartItems[]>([]);
 
-  const cartTotalQty = cartItems.reduce((totalQty, item) => {
-    return totalQty + item.qty;
-  }, 0);
+  const cartTotalQty = cartItems.reduce(
+    (totalQty, item) => totalQty + item.qty,
+    0
+  );
 
   const getProductQty = (id: number) => {
-    return cartItems.find((item) => item.id == id)?.qty || 0;
+    return cartItems.find((item) => item.id === id)?.qty || 0;
   };
 
   const handleIncreaseProductQty = (id: number) => {
-    setCartItems((currentItem) => {
-      let isNotProductExist = currentItem.find((item) => item.id == id) == null;
-      if (isNotProductExist) {
-        return [...currentItem, { id: id, qty: 1 }];
+    setCartItems((currentItems) => {
+      const productExists = currentItems.find((item) => item.id === id);
+      if (!productExists) {
+        return [...currentItems, { id, qty: 1 }];
       } else {
-        return currentItem.map((item) => {
-          if (item.id == id) {
-            return {
-              ...item,
-              qty: item.qty + 1,
-            };
-          } else {
-            return item;
-          }
-        });
+        return currentItems.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item
+        );
       }
     });
   };
 
   const handleDecreaseProductQty = (id: number) => {
-    setCartItems((currentItem) => {
-      let isLastOne = currentItem.find((item) => item.id == id)?.qty === 1;
-      if (isLastOne) {
-        return currentItem.filter((item) => item.id != id);
+    setCartItems((currentItems) => {
+      const product = currentItems.find((item) => item.id === id);
+      if (product?.qty === 1) {
+        return currentItems.filter((item) => item.id !== id);
       } else {
-        return currentItem.map((item) => {
-          if (item.id == id) {
-            return {
-              ...item,
-              qty: item.qty - 1,
-            };
-          } else {
-            return item;
-          }
-        });
+        return currentItems.map((item) =>
+          item.id === id ? { ...item, qty: item.qty - 1 } : item
+        );
       }
     });
   };
 
   const handleRemoveProduct = (id: number) => {
-    setCartItems((currentItem) => {
-      return currentItem.filter((item) => item.id != id);
-    });
+    setCartItems((currentItems) =>
+      currentItems.filter((item) => item.id !== id)
+    );
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem("cartItems");
   };
 
   useEffect(() => {
@@ -104,9 +94,10 @@ export function ShoppingCartContextProvider({
         cartItems,
         handleIncreaseProductQty,
         getProductQty,
+        cartTotalQty,
         handleDecreaseProductQty,
         handleRemoveProduct,
-        cartTotalQty,
+        clearCart,
       }}
     >
       {children}

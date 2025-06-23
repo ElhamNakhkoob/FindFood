@@ -13,7 +13,7 @@ interface IStoreProps {
 
 async function Store({ searchParams }: IStoreProps) {
   const page = (await searchParams).page ?? "1";
-  const perPage = (await searchParams).per_page || "2";
+  const perPage = (await searchParams).per_page || "8";
   const title = (await searchParams).title ?? "";
 
   const result = await fetch(
@@ -24,8 +24,7 @@ async function Store({ searchParams }: IStoreProps) {
   return (
     <Container>
       <Search />
-      <h1 className="text-2xl font-bold mb-6">Store</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {data?.data?.map((item) => (
           <Link href={`/store/${item.id}`} key={item.id}>
             <ProductItem {...item} />

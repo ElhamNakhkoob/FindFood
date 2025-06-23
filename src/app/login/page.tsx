@@ -30,16 +30,30 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-white">
       <Container>
-        <div className="border p-4 flex flex-col w-72 max-auto">
-          <input onChange={(e) => setUserName(e.target.value)} type="text" />
+        <div className="border border-[#D8732F] rounded-lg p-6 flex flex-col w-80 mx-auto bg-white shadow-md">
+          <h2 className="text-2xl font-semibold mb-4 text-[#D8732F] text-center">
+            Login
+          </h2>
+          <input
+            onChange={(e) => setUserName(e.target.value)}
+            type="text"
+            placeholder="Username"
+            className="mb-4 px-4 py-2 rounded border border-[#DE8436] text-[#D8732F] placeholder-[#DE8436] focus:outline-none focus:ring-2 focus:ring-[#D8732F]"
+          />
           <input
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-2"
             type="password"
+            placeholder="Password"
+            className="mb-6 px-4 py-2 rounded border border-[#DE8436] text-[#D8732F] placeholder-[#DE8436] focus:outline-none focus:ring-2 focus:ring-[#D8732F]"
           />
-          <button onClick={handleLogin}>login</button>
+          <button
+            onClick={handleLogin}
+            className="bg-[#D8732F] hover:bg-[#DE8436] text-white font-semibold py-2 rounded transition-colors duration-300"
+          >
+            Login
+          </button>
         </div>
       </Container>
     </div>

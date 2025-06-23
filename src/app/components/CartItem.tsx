@@ -10,24 +10,32 @@ interface CartItemProps {
 
 function CartItem({ id, qty }: CartItemProps) {
   const [data, setData] = useState({} as IProductItemProps);
+
   useEffect(() => {
     axios(`http://localhost:3004/products/${id}`).then((response) => {
       const { data } = response;
       setData(data);
     });
-  }, []);
+  }, [id]);
 
   return (
-    <div className="grid grid-cols-10 bg-slate-100 mb-4">
-      <img className="col-span-2" src={data.image} alt="" />
-      <div>
-        <h2>{data.title}</h2>
-        <p>
-          number of Products: <span>{qty}</span>
+    <div className="flex items-center bg-white rounded-lg shadow-md p-4 gap-4">
+      <img
+        src={data.image}
+        alt={data.title}
+        className="w-24 h-24 object-cover rounded-md flex-shrink-0"
+      />
+      <div className="flex flex-col flex-grow">
+        <h2 className="text-lg font-semibold mb-1">{data.title}</h2>
+        <p className="text-gray-600">
+          Quantity: <span className="font-medium">{qty}</span>
         </p>
-        <p>
-          Price: <span>{data.price}</span>
+        <p className="text-gray-700 mt-1">
+          Price:{" "}
+          <span className="font-semibold text-blue-600">${data.price}</span>
         </p>
+      </div>
+      <div className="flex-shrink-0">
         <AddToCart id={id.toString()} />
       </div>
     </div>

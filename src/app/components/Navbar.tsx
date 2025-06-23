@@ -2,27 +2,32 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Container from "./Container";
 import { useShoppingCartContext } from "@/context/ShoppingCartContext";
 import Cookies from "js-cookie";
-import { redirect } from "next/navigation";
 
 function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { cartTotalQty } = useShoppingCartContext();
-  const navLinks = [
-    { href: "/", title: "Home" },
-    { href: "/store", title: "Store" },
-    { href: "/cart", title: "Cart" },
-    { href: "/dashboard", title: "dashboard" },
-    { href: "/login", title: "login" },
-  ];
-
   const [isOpen, setIsOpen] = useState(false);
 
+  const navLinks = [
+    { href: "/", title: "Home" },
+    { href: "/store", title: "Menu" },
+    { href: "/cart", title: "Order" },
+    { href: "/dashboard", title: "Admin" },
+    { href: "/login", title: "Sign In" },
+  ];
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    router.push("/");
+  };
+
   return (
-    <nav className="shadow p-4 bg-[#D9AC84]">
+    <nav className="shadow p-4 bg-[#D9AC84] text-white font-semibold">
       <Container>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -33,18 +38,16 @@ function Navbar() {
               height={40}
               className="rounded-full invert brightness-0"
             />
-            <span className="text-2xl font-bold tracking-wide text-white font-serif">
+            <span className="text-2xl font-bold tracking-wide font-serif">
               findFood
             </span>
           </div>
-
-          {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`font-semibold transition-colors ${
+                className={`transition-colors cursor-pointer ${
                   pathname === item.href ? "text-[#DE8436]" : "text-white"
                 } hover:text-[#DE8436]`}
               >
@@ -56,18 +59,13 @@ function Navbar() {
                 )}
               </Link>
             ))}
-            <button
-              onClick={() => {
-                Cookies.remove("token");
-                redirect("/");
-              }}
-              className="mr-4 rounded text-red "
+            <span
+              onClick={handleLogout}
+              className="cursor-pointer transition-colors text-white hover:text-red-500"
             >
               Log Out
-            </button>
+            </span>
           </div>
-
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -98,15 +96,13 @@ function Navbar() {
             </svg>
           </button>
         </div>
-
-        {/* Mobile Nav Links */}
         {isOpen && (
           <div className="md:hidden mt-4 space-y-2">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block px-4 py-2 rounded font-semibold transition-colors ${
+                className={`block px-4 py-2 rounded transition-colors cursor-pointer ${
                   pathname === item.href ? "text-[#DE8436]" : "text-white"
                 } hover:bg-white hover:text-[#D9AC84]`}
                 onClick={() => setIsOpen(false)}
@@ -119,6 +115,15 @@ function Navbar() {
                 )}
               </Link>
             ))}
+            <span
+              onClick={() => {
+                setIsOpen(false);
+                handleLogout();
+              }}
+              className="block px-4 py-2 rounded transition-colors cursor-pointer hover:bg-white hover:text-red-500 text-white"
+            >
+              Log Out
+            </span>
           </div>
         )}
       </Container>

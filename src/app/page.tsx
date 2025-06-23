@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -7,15 +8,33 @@ export default function Home() {
         <div className="text-[#DE8436] text-2xl font-bold px-4 py-2 rounded mb-4">
           Today's Meals
         </div>
-        <div className="flex flex-wrap justify-center gap-4 px-4 sm:px-6 lg:px-8">
-          <img className="meals-img" src="/hamburger.jpg" alt="hamburger" />
-          <img className="meals-img" src="/steak.jpg" alt="steak" />
-          <img className="meals-img" src="/tiramisu.jpg" alt="Tiramisu" />
-          <img className="meals-img" src="/ppizza.webp" alt="pizza" />
-          <img className="meals-img" src="/ppasta.webp" alt="pasta" />
-        </div>
+        <Link href="/store">
+          <div className="flex flex-wrap justify-center gap-6 px-4 sm:px-6 lg:px-8 cursor-pointer">
+            {[
+              { src: "/hamburger.jpg", alt: "Hamburger" },
+              { src: "/steak.jpg", alt: "Steak" },
+              { src: "/tiramisu.jpg", alt: "Tiramisu" },
+              { src: "/ppizza.webp", alt: "Pizza" },
+              { src: "/ppasta.webp", alt: "Pasta" },
+            ].map((meal, idx) => (
+              <div
+                key={idx}
+                className="bg-white shadow-md rounded-xl overflow-hidden w-40 sm:w-48 md:w-56 transform transition-transform hover:scale-105"
+              >
+                <img
+                  src={meal.src}
+                  alt={meal.alt}
+                  className="w-full h-32 sm:h-40 object-cover"
+                />
+                <div className="p-2 text-center font-semibold text-[#D8732F]">
+                  {meal.alt}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Link>
 
-        <div className="w-full mx-auto flex flex-col sm:flex-row bg-[#F6E8DC] h-[400px]">
+        <div className="w-full mx-auto flex flex-col sm:flex-row bg-[#F6E8DC]">
           <div className="w-full sm:w-1/2 p-4 sm:p-6 flex flex-col">
             <h2 className="text-lg font-semibold text-[#D8732F] mb-2">
               Our Story
@@ -42,9 +61,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Menu Section */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 mt-10 sm:mt-0">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-[#DE8436]">
           Menu
         </h2>
@@ -54,26 +71,23 @@ export default function Home() {
             { src: "/ppizza.webp", label: "Pizza" },
             { src: "/tiramisu.jpg", label: "Dessert" },
           ].map((item, idx) => (
-            <div
-              key={idx}
-              className="group bg-white rounded-xl shadow-md overflow-hidden border border-[#D9AC84] transform transition-transform duration-300 hover:scale-105 mt-[140px] sm:mt-0"
-            >
-              <div className="h-64 sm:h-72 overflow-hidden">
-                <img
-                  src={item.src}
-                  alt={item.label}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
+            <Link href="/store" key={idx}>
+              <div className="group bg-white rounded-xl shadow-md overflow-hidden border border-[#D9AC84] transform transition-transform duration-300 hover:scale-105 mt-4 sm:mt-0 cursor-pointer">
+                <div className="h-64 sm:h-72 overflow-hidden">
+                  <img
+                    src={item.src}
+                    alt={item.label}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-4 text-center text-lg font-semibold text-[#D9AC84]">
+                  {item.label}
+                </div>
               </div>
-              <div className="p-4 text-center text-lg font-semibold text-[#D9AC84]">
-                {item.label}
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
-
-      {/* Events Section */}
       <section className="bg-[#F6E8DC] py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         <div className="text-2xl font-bold text-[#DE8436] mb-6">Events</div>
         <div className="w-full flex flex-col sm:flex-row">
@@ -96,8 +110,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials Section */}
       <section className="py-8 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-center gap-4">
           {[1, 2, 3, 4, 5, 6].map((num, idx) => {
