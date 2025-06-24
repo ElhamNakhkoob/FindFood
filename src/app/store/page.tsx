@@ -16,9 +16,13 @@ async function Store({ searchParams }: IStoreProps) {
   const perPage = (await searchParams).per_page || "8";
   const title = (await searchParams).title ?? "";
 
+  const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+
   const result = await fetch(
-    `http://localhost:3004/products?_page=${page}&_per_page=${perPage}&title=${title}`
+    `${baseUrl}/api/products?page=${page}&per_page=${perPage}&title=${title}`,
+    { next: { revalidate: 0 } }
   );
+
   const data = (await result.json()) as IProductList;
 
   return (
