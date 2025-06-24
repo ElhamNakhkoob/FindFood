@@ -12,21 +12,16 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios({
-        url: "",
-        method: "POST",
-        data: {
-          username: userName,
-          password: password,
-        },
-      });
+      await new Promise((resolve) => setTimeout(resolve, 500));
       const authData = {
         token: "1234567890",
         expire: 7,
       };
+
       Cookie.set("token", authData.token, {
         expires: authData.expire,
       });
+
       router.push("/dashboard");
     } catch (error) {
       console.error("Login failed:", error);
