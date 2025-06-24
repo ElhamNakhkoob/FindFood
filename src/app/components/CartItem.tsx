@@ -17,7 +17,6 @@ function CartItem({ id, qty }: CartItemProps) {
       setData(data);
     });
   }, [id]);
-
   return (
     <div className="flex items-center bg-white rounded-lg shadow-md p-4 gap-4">
       <img

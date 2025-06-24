@@ -33,8 +33,8 @@ function Cart() {
     });
   }, []);
 
-  let totalPrice = cartItems.reduce((total, item) => {
-    let selectedProduct = data.find(
+  const totalPrice = cartItems.reduce((total, item) => {
+    const selectedProduct = data.find(
       (product) => product.id == item.id.toString()
     );
     return total + (selectedProduct?.price || 0) * item.qty;
@@ -44,8 +44,8 @@ function Cart() {
     axios(`http://localhost:3004/discount?code=${discountCode}`).then(
       (result) => {
         const data = result.data as IDiscount[];
-        let discountedPrice = (totalPrice * data[0]?.percentage) / 100;
-        let finalPrice = totalPrice - discountedPrice;
+        const discountedPrice = (totalPrice * data[0]?.percentage) / 100;
+        const finalPrice = totalPrice - discountedPrice;
         setFinalPrice(finalPrice);
         setDiscountedPrice(discountedPrice);
       }

@@ -3,8 +3,29 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import Container from "@/app/components/Container";
 import axios from "axios";
 
+interface Product {
+  id: string;
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+}
+
+interface CartItem {
+  id: string;
+  qty: number;
+}
+
+interface Order {
+  id: string;
+  userName: string;
+  address: string;
+  status: string;
+  cartItems: CartItem[];
+}
+
 function Dashboard() {
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [newProduct, setNewProduct] = useState({
     title: "",
     price: "",
@@ -12,7 +33,7 @@ function Dashboard() {
     description: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetchProducts();
@@ -154,9 +175,9 @@ function Dashboard() {
                   </p>
                   <p>
                     <strong className="text-[#D8732F]">Items:</strong>
-                  </p>
+                  </p>{" "}
                   <ul className="ml-6 list-disc text-[#D8732F]">
-                    {order.cartItems.map((item: any) => {
+                    {order.cartItems.map((item: CartItem) => {
                       const product = products.find(
                         (p) => p.id.toString() === item.id.toString()
                       );

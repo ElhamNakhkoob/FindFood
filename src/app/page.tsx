@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex-grow">
       <section className="relative py-8 flex flex-col items-center gap-6">
         <div className="text-[#DE8436] text-2xl font-bold px-4 py-2 rounded mb-4">
-          Today's Meals
+          Today&apos;s Meals
         </div>
         <Link href="/store">
           <div className="flex flex-wrap justify-center gap-6 px-4 sm:px-6 lg:px-8 cursor-pointer">

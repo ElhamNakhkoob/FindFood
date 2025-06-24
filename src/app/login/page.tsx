@@ -3,30 +3,34 @@ import React, { useState } from "react";
 import Container from "@/app/components/Container";
 import axios from "axios";
 import Cookie from "js-cookie";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleLogin = () => {
-    const data = axios({
-      url: "",
-      method: "POST",
-      data: {
-        username: userName,
-        password: password,
-      },
-    });
-    const response = {
-      token: "1234567890",
-      expire: 7,
-    };
-
-    Cookie.set("token", response.token, {
-      expires: response.expire,
-    });
-    redirect("/dashboard");
+  const handleLogin = async () => {
+    try {
+      const response = await axios({
+        url: "",
+        method: "POST",
+        data: {
+          username: userName,
+          password: password,
+        },
+      });
+      const authData = {
+        token: "1234567890",
+        expire: 7,
+      };
+      Cookie.set("token", authData.token, {
+        expires: authData.expire,
+      });
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
