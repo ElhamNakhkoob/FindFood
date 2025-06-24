@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Container from "@/app/components/Container";
-import axios from "axios";
 import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -9,9 +8,12 @@ function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
   const handleLogin = async () => {
     try {
+      if (!userName.trim() || !password.trim()) {
+        alert("Please enter both username and password");
+        return;
+      }
       await new Promise((resolve) => setTimeout(resolve, 500));
       const authData = {
         token: "1234567890",
