@@ -389,5 +389,26 @@
       "percentage": 30
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "id": "e5b6",
+      "cartItems": [
+        {
+          "id": 1003,
+          "qty": 3
+        },
+        {
+          "id": 5003,
+          "qty": 2
+        },
+        {
+          "id": 1002,
+          "qty": 2
+        }
+      ],
+      "address": "34df",
+      "userName": "234",
+      "status": "pending | completed"
+    }
+  ]
 }
