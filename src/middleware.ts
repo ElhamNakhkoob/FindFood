@@ -1,4 +1,3 @@
-import { redirect } from "next/dist/server/api-utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {

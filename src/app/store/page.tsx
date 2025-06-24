@@ -7,7 +7,7 @@ import Pagination from "../components/pagination";
 import Search from "../components/Search";
 
 interface IStoreProps {
-  params: Promise<{}>;
+  params: Promise<Record<string, never>>;
   searchParams: Promise<{ page: string; per_page: string; title: string }>;
 }
 
