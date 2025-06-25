@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { IProductItemProps } from "../components/ProductItem";
 import { formatNumerWithCommas } from "../../utils/number";
+import { useRouter } from "next/navigation";
 
 interface IDiscount {
   id: number;
@@ -25,6 +26,8 @@ function Cart() {
     userName: "",
     status: "pending | completed",
   });
+
+  const router = useRouter();
 
   useEffect(() => {
     axios(`http://localhost:3004/products`).then((response) => {
@@ -74,6 +77,7 @@ function Cart() {
       .then(() => {
         alert("Order placed successfully!");
         clearCart();
+        router.push("/dashboard");
       })
       .catch((error) => {
         console.error("Error placing order:", error);
@@ -118,7 +122,7 @@ function Cart() {
             <div className="flex gap-2 mb-6">
               <input
                 className="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter discount code"
+                placeholder="Enter discount code OFF10"
                 type="text"
                 value={discountCode}
                 onChange={(e) => setDiscountCode(e.target.value)}

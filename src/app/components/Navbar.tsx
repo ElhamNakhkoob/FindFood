@@ -16,8 +16,7 @@ function Navbar() {
   const navLinks = [
     { href: "/", title: "Home" },
     { href: "/store", title: "Menu" },
-    { href: "/cart", title: "Order" },
-    { href: "/dashboard", title: "Admin" },
+    { href: "/cart", title: "Cart" },
     { href: "/login", title: "Sign In" },
   ];
 
